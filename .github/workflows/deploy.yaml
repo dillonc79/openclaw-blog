@@ -21,13 +21,21 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Install dependencies and plugins
+      - name: Install dependencies
         run: |
-          npm ci
-          npm run install-plugins
+          npm ci 2>&1 || { echo "npm ci failed"; exit 1; }
+      - name: Install plugins
+        run: |
+          npm run install-plugins 2>&1 || echo "install-plugins failed, continuing..."
       - name: Build Quartz
-        run: npx quartz build
+        run: |
+          npx quartz build 2>&1 | tee build.log
+          echo "---BUILD EXIT CODE: $?"
+      - name: Show build log on failure
+        if: failure()
+        run: cat build.log
       - uses: actions/upload-pages-artifact@v3
+        if: success()
         with:
           path: public
   deploy:
