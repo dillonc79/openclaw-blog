@@ -67,3 +67,27 @@ pre {
   max-height: 200px;
   overflow: hidden;
 }
+
+// ─── MiniMax referral button in footer ───────────────────────────────────────
+.btn-minimax {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  background: #1a6b3c;
+  color: #fff !important;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: background 0.2s ease, transform 0.1s ease;
+  border: 1px solid transparent;
+
+
+  &:hover {
+    background: #145530;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
