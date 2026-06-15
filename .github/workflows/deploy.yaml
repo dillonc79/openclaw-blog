@@ -24,13 +24,19 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Install plugins
-        run: npm run install-plugins
+        run: |
+          node --experimental-strip-types --no-warnings quartz/bootstrap-cli.mjs plugin install 2>&1 || {
+            echo "plugin install failed, trying alternative..."
+            npm run install-plugins 2>&1
+          }
       - name: Build Quartz
-        run: npx quartz build 2>&1
+        run: |
+          node --experimental-strip-types --no-warnings quartz/bootstrap-cli.mjs build 2>&1
+          echo "Build exit code: $?"
       - name: Check output
         run: |
-          echo "=== public dir ===" && ls -la public/ 2>&1 | head -20
-          echo "=== index.html ===" && head -30 public/index.html 2>&1 | head -10
+          echo "=== public dir ===" && ls public/ 2>&1 | head -10
+          echo "=== html count ===" && ls public/*.html 2>&1 | wc -l
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
