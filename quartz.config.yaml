@@ -6,7 +6,7 @@ configuration:
   enablePopovers: true
   analytics:
     provider: none
-  locale: en-ZA
+  locale: en-US
   baseUrl: "https://dillonc79.github.io/openclaw-blog"
   ignorePatterns:
     - private
