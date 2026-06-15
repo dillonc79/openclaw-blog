@@ -25,17 +25,18 @@ jobs:
         run: npm ci
       - name: Install plugins
         run: |
-          node --experimental-strip-types --no-warnings quartz/bootstrap-cli.mjs plugin install 2>&1 || {
-            echo "plugin install failed, trying alternative..."
-            npm run install-plugins 2>&1
-          }
+          node --experimental-strip-types --no-warnings quartz/bootstrap-cli.mjs plugin install 2>&1 || npm run install-plugins 2>&1
       - name: Build Quartz
         run: |
-          node --experimental-strip-types --no-warnings quartz/bootstrap-cli.mjs build 2>&1
-          echo "Build exit code: $?"
+          node --experimental-strip-types --no-warnings quartz/bootstrap-cli.mjs build 2>&1 | tee build.log
+          echo "Exit code: $?"
+      - name: Show build log on failure
+        if: failure()
+        run: |
+          echo "=== BUILD LOG ===" && cat build.log && echo "=== END LOG ==="
       - name: Check output
         run: |
-          echo "=== public dir ===" && ls public/ 2>&1 | head -10
+          echo "=== public dir ===" && ls public/ 2>&1 | head -20
           echo "=== html count ===" && ls public/*.html 2>&1 | wc -l
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
