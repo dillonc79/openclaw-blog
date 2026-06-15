@@ -24,13 +24,22 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Install plugins
-        run: npm run install-plugins
+        run: |
+          echo "=== install-plugins output ===" 
+          npm run install-plugins 2>&1 | tee plugins.log
+          echo "=== exit code: $? ==="
+      - name: Upload plugins log on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: plugins-log
+          path: plugins.log
       - name: Build Quartz
         run: npx quartz build
       - name: Check build output
         run: |
-          echo "=== public directory ===" && ls -la public/ 2>&1 | head -20
-          echo "=== public/*.html count ===" && ls public/*.html 2>&1 | wc -l
+          echo "=== public files ===" && ls public/ 2>&1 | head -10
+          echo "=== html count ===" && ls public/*.html 2>&1 | wc -l
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
