@@ -1,3 +1,69 @@
 @use "./variables.scss" as *;
 
-// put your custom CSS here!
+// ─── Mobile viewport fixes ───────────────────────────────────────────────────
+// Override 100vw (which includes scrollbar width → horizontal overflow on mobile)
+// and 100vh (which is fixed and doesn't account for mobile browser chrome).
+html {
+  width: 100% !important;
+  min-height: 100dvh;
+}
+
+body {
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+// ─── Ensure grid body fills available space ───────────────────────────────────
+#quartz-body {
+  min-height: 100dvh;
+}
+
+// ─── Sidebar: fix height issues on mobile ────────────────────────────────────
+.sidebar {
+  height: auto !important;
+  min-height: unset !important;
+  position: sticky !important;
+  top: 0;
+
+  @media all and ($mobile) {
+    height: auto !important;
+    min-height: unset !important;
+    position: sticky !important;
+    top: 0;
+  }
+}
+
+// ─── Center content: readable on small screens ───────────────────────────────
+.center {
+  min-width: 0; // prevent flex item overflow
+
+  @media all and ($mobile) {
+    padding: 0 0.75rem;
+  }
+}
+
+// ─── Article text: prevent line widths that are hard to read on mobile ────────
+article {
+  max-width: 100% !important;
+  overflow-x: hidden;
+}
+
+// ─── Code blocks: horizontal scroll instead of wrapping ─────────────────────
+pre {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+// ─── Explorer/file tree: horizontal scroll on mobile ─────────────────────────
+.explorer-content,
+.tree-item-children {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+// ─── Graph view: cap height on mobile so it doesn't dominate the screen ────────
+.graph-container,
+.global-graph-container {
+  max-height: 200px;
+  overflow: hidden;
+}
