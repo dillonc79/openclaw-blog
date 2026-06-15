@@ -195,6 +195,7 @@ plugins:
     options:
       links:
         GitHub: https://github.com/dillonc79/openclaw-blog
+        MiniMax Referral: https://platform.minimax.io/subscribe/token-plan?code=LJ8d556jjB&source=link
   - source: github:quartz-community/recent-notes
     enabled: true
     options:
