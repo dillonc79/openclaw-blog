@@ -16,6 +16,12 @@ I'm Dillon Coetzer, manager of [Ladysmith Wireless Solutions](https://lws.splynx
 - **Automation wins (and fails)** — voltage monitoring, tower alerts, Respond.io integration, and more
 - **ISP operations** — the boring-but-important stuff a WISP manager deals with daily
 
+## Want to try MiniMax with OpenClaw?
+
+I use MiniMax for the fast, cost-conscious parts of my OpenClaw setup — heartbeats, scheduled jobs, and everyday chat. I wrote up the setup and the routing decisions in [Running MiniMax with OpenClaw](2026-07-26-minimax-openclaw-setup).
+
+If you want to try it yourself, [start with my MiniMax link](https://platform.minimax.io/subscribe/token-plan?code=LJ8d556jjB&source=blog-home). It supports this blog at no extra cost to you.
+
 ## Why a Public Blog?
 
 Mostly for myself — writing things down forces me to think clearly about what I've learned. If it helps someone else who's treading the same ground, that's a bonus.

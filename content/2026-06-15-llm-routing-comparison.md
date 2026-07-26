@@ -39,6 +39,10 @@ The default model is almost never the right model. Setting up routing rules in O
 
 The best model for the job is usually the cheapest one that can do the job *well*.
 
+## Try the setup yourself
+
+If you want to test the fast/cheap model in this routing pattern, [try MiniMax through my referral link](https://platform.minimax.io/subscribe/token-plan?code=LJ8d556jjB&source=blog-routing). It costs you nothing extra and helps support the notes on this site. For the practical setup, see [Running MiniMax with OpenClaw](2026-07-26-minimax-openclaw-setup).
+
 ---
 
 *Tested on: Mac Mini M2, OpenClaw 2026.6.6, June 2026*
